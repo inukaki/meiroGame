@@ -128,6 +128,8 @@ void generate_meiro(char choice){
             thisWall[j].y = 0;
         }
     }
+    free(startPoint);
+    free(thisWall);
 
     print_meiro(meiro, size_x, size_y);
 }
