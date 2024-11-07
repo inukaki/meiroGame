@@ -28,7 +28,7 @@ void generate_meiro(char choice){
     for(int i = 0; i < size_y; i++){
         for(int j = 0; j < size_x; j++){
             if(i == 0 && j == 1) meiro[i][j].state = 2;   // スタート地点
-            else if(i == size_x-1 && j == size_y-2) meiro[i][j].state = 3;   // ゴール地点
+            else if(i == size_y-1 && j == size_x-2) meiro[i][j].state = 3;   // ゴール地点
             else if(i == 0 || i == size_y-1 || j == 0 || j == size_x-1) meiro[i][j].state = 1;    // 外周
             else meiro[i][j].state = 0;   // 通路
         }
