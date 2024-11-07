@@ -36,5 +36,23 @@ void generate_meiro(char choice){
 
     print_meiro(meiro, size_x, size_y);
 
-    // 壁伸ばし法で迷路を生成
+    // 壁生成開始地点を格納する配列を生成
+    int startPointXNum = (size_x-3) / 2;
+    int startPointYNum = (size_y-3) / 2;
+    int startPointNum = startPointXNum * startPointYNum;
+    Point *startPoint = (Point *)malloc(startPointNum * sizeof(Point));
+    for(int i = 0; i < startPointYNum; i++){
+        for(int j = 0; j < startPointXNum; j++){
+            startPoint[i * startPointXNum + j].x = 2 * (j+1) + 1;
+            startPoint[i * startPointXNum + j].y = 2 * (i+1) + 1;
+        }
+    }
+
+    // startPointをシャッフル
+    shuffle_array(startPoint, startPointNum);
+
+    for (int i = 0; i < startPointNum; i++)
+    {
+        printf("startPoint[%d]: (%d, %d)\n", i, startPoint[i].x, startPoint[i].y);
+    }
 }
