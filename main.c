@@ -1,7 +1,11 @@
 #include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
 #include"meiro.h"
 
 int main(){
+    srand(time(NULL));
+    
     printf("迷路生成プログラム\n\n");
 
     printf("モードを選択してください\n");

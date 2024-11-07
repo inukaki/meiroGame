@@ -12,7 +12,8 @@ void load_mode(void);
 void play_mode(void);
 
 void generate_meiro(char choice);
-void shuffle_array(Point *array, int size);
+void shuffle_point_array(Point *array, int size);
+void shuffle_int_array(int *array, int size);
 void play_meiro(void);
 void save_meiro(void);
 void load_meiro(void);

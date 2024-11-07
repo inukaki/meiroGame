@@ -8,4 +8,5 @@ typedef struct
 {
     int x;
     int y;
+    int direction;
 } Point;
