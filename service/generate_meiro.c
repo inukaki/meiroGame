@@ -25,7 +25,6 @@ void generate_meiro(char choice, Meiro *meiro){
     }
 
     // 迷路の外周を生成
-    // 迷路の外周を生成
     for (int i = 0; i < meiro->height; i++) {
         for (int j = 0; j < meiro->width; j++) {
             if (i == 0 && j == 1) meiro->cells[i][j].state = 2;   // スタート地点
@@ -91,15 +90,14 @@ void generate_meiro(char choice, Meiro *meiro){
             }
 
             // 壁に衝突する場合
-
             // 生成中の壁に囲まれているか判定
-            int j=0;
+            int checkedWallNum = 0;
             int tryCount = 0;
             int endFlag = 0;
             // 次に進む方向が生成中の壁であるか確認
-            while(j<thisWallNum){
+            while(checkedWallNum<thisWallNum){
                 // もし次の進む方向が生成中の壁であれば、次の方向に変更
-                if(x+dx[directions[tryCount]]*2 == thisWall[j].x && y+dy[directions[tryCount]]*2 == thisWall[j].y){
+                if(x+dx[directions[tryCount]]*2 == thisWall[checkedWallNum].x && y+dy[directions[tryCount]]*2 == thisWall[checkedWallNum].y){
                     tryCount++;
                     // 四方向すべてが生成中の壁であれば、生成を終了
                     if(tryCount == 4){
@@ -110,10 +108,10 @@ void generate_meiro(char choice, Meiro *meiro){
                     }
                     // 次の方向に変更
                     direction = directions[tryCount];
-                    j = 0;
+                    checkedWallNum = 0;
                 }
                 else{
-                    j++;
+                    checkedWallNum++;
                 }
             }
             // 四方向すべてが生成中の壁であれば、生成を終了
@@ -149,8 +147,10 @@ void generate_meiro(char choice, Meiro *meiro){
             thisWall[j].y = 0;
         }
     }
+    // startPointとthisWallを解放
     free(startPoint);
     free(thisWall);
 
+    // 迷路を表示
     print_meiro(meiro);
 }
