@@ -131,6 +131,7 @@ void generate_meiro(char choice){
 
                     // 壁を生成
                     meiro[y+dy[direction]][x+dx[direction]].state = 1;
+                    meiro[y+dy[direction]*2][x+dx[direction]*2].state = 1;
                     x += dx[direction]*2;
                     y += dy[direction]*2;
                     continue;
