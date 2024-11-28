@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "meiro.h"
+#include "../headers/meiro.h"
 
 void print_meiro(Meiro *meiro){
     for (int i = 0; i < meiro->height; i++)
