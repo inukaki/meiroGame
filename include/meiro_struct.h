@@ -10,3 +10,10 @@ typedef struct
     int y;
     int direction;
 } Point;
+
+typedef struct
+{
+    int width;
+    int height;
+    Cell **cells;
+} Meiro;

@@ -3,41 +3,41 @@
 #include<stdlib.h>
 #include"../include/meiro.h"
 
-void generate_meiro(char choice){
-    int size_x, size_y;
-    if(choice == '1'){
-        size_x = SMALL_X;
-        size_y = SMALL_Y;
-    }else if(choice == '2'){
-        size_x = MEDIUM_X;
-        size_y = MEDIUM_Y;
-    }else if(choice == '3'){
-        size_x = LARGE_X;
-        size_y = LARGE_Y;
-    }else{
+void generate_meiro(char choice, Meiro *meiro){
+    if (choice == '1') {
+        meiro->width = SMALL_X;
+        meiro->height = SMALL_Y;
+    } else if (choice == '2') {
+        meiro->width = MEDIUM_X;
+        meiro->height = MEDIUM_Y;
+    } else if (choice == '3') {
+        meiro->width = LARGE_X;
+        meiro->height = LARGE_Y;
+    } else {
         printf("error: 不正な入力です. in generate_meiro\n");
         return;
     }
 
     // 迷路用のメモリを確保
-    Cell **meiro = (Cell **)malloc(size_y * sizeof(Cell *));
-    for(int i = 0; i < size_y; i++){
-        meiro[i] = (Cell *)malloc(size_x * sizeof(Cell));
+    meiro->cells = (Cell **)malloc(meiro->height * sizeof(Cell *));
+    for (int i = 0; i < meiro->height; i++) {
+        meiro->cells[i] = (Cell *)malloc(meiro->width * sizeof(Cell));
     }
 
     // 迷路の外周を生成
-    for(int i = 0; i < size_y; i++){
-        for(int j = 0; j < size_x; j++){
-            if(i == 0 && j == 1) meiro[i][j].state = 2;   // スタート地点
-            else if(i == size_y-1 && j == size_x-2) meiro[i][j].state = 3;   // ゴール地点
-            else if(i == 0 || i == size_y-1 || j == 0 || j == size_x-1) meiro[i][j].state = 1;    // 外周
-            else meiro[i][j].state = 0;   // 通路
+    // 迷路の外周を生成
+    for (int i = 0; i < meiro->height; i++) {
+        for (int j = 0; j < meiro->width; j++) {
+            if (i == 0 && j == 1) meiro->cells[i][j].state = 2;   // スタート地点
+            else if (i == meiro->height - 1 && j == meiro->width - 2) meiro->cells[i][j].state = 3;   // ゴール地点
+            else if (i == 0 || i == meiro->height - 1 || j == 0 || j == meiro->width - 1) meiro->cells[i][j].state = 1;    // 外周
+            else meiro->cells[i][j].state = 0;   // 通路
         }
     }
 
     // 壁生成開始地点を格納する配列を生成
-    int startPointXNum = (size_x-3) / 2;
-    int startPointYNum = (size_y-3) / 2;
+    int startPointXNum = (meiro->width - 3) / 2;
+    int startPointYNum = (meiro->height - 3) / 2;
     int startPointNum = startPointXNum * startPointYNum;
     Point *startPoint = (Point *)malloc(startPointNum * sizeof(Point));
     for(int i = 0; i < startPointYNum; i++){
@@ -64,8 +64,8 @@ void generate_meiro(char choice){
         int x = startPoint[i].x;
         int y = startPoint[i].y;
         // 既に壁がある場合はスキップ
-        if(meiro[y][x].state == 1) continue;
-        meiro[y][x].state = 1;
+        if (meiro->cells[y][x].state == 1) continue;
+        meiro->cells[y][x].state = 1;
 
         // 生成中の壁に囲まれるか、生成済みの壁に到達するまで壁を生成
         while(1){
@@ -73,7 +73,7 @@ void generate_meiro(char choice){
             int direction = directions[0];
 
             // 壁に衝突しない場合
-            if(meiro[y+dy[direction]*2][x+dx[direction]*2].state != 1){
+            if (meiro->cells[y + dy[direction] * 2][x + dx[direction] * 2].state != 1) {
                 // 生成中の壁を記録
                 thisWall[thisWallNum].x = x;
                 thisWall[thisWallNum].y = y;
@@ -81,10 +81,10 @@ void generate_meiro(char choice){
                 thisWallNum++;
 
                 // 壁を生成
-                meiro[y+dy[direction]][x+dx[direction]].state = 1;
-                meiro[y+dy[direction]*2][x+dx[direction]*2].state = 1;
-                x += dx[direction]*2;
-                y += dy[direction]*2;
+                meiro->cells[y + dy[direction]][x + dx[direction]].state = 1;
+                meiro->cells[y + dy[direction] * 2][x + dx[direction] * 2].state = 1;
+                x += dx[direction] * 2;
+                y += dy[direction] * 2;
 
                 // 次のループへ
                 continue;
@@ -122,7 +122,7 @@ void generate_meiro(char choice){
             // 生成中の壁にぶつかり、進路変更した場合
             if(tryCount != 0){
                 // 壁に衝突しない場合
-                if(meiro[y+dy[direction]*2][x+dx[direction]*2].state != 1){
+                if(meiro->cells[y+dy[direction]*2][x+dx[direction]*2].state != 1){
                     // 生成中の壁を記録
                     thisWall[thisWallNum].x = x;
                     thisWall[thisWallNum].y = y;
@@ -130,8 +130,8 @@ void generate_meiro(char choice){
                     thisWallNum++;
 
                     // 壁を生成
-                    meiro[y+dy[direction]][x+dx[direction]].state = 1;
-                    meiro[y+dy[direction]*2][x+dx[direction]*2].state = 1;
+                    meiro->cells[y+dy[direction]][x+dx[direction]].state = 1;
+                    meiro->cells[y+dy[direction]*2][x+dx[direction]*2].state = 1;
                     x += dx[direction]*2;
                     y += dy[direction]*2;
                     continue;
@@ -139,7 +139,7 @@ void generate_meiro(char choice){
             }
 
             // 壁に衝突する手前を生成して、生成を終了
-            meiro[y+dy[direction]][x+dx[direction]].state = 1;
+            meiro->cells[y+dy[direction]][x+dx[direction]].state = 1;
             break;
         }
         // thisWallとthisWallNumを初期化
@@ -152,5 +152,5 @@ void generate_meiro(char choice){
     free(startPoint);
     free(thisWall);
 
-    print_meiro(meiro, size_x, size_y);
+    print_meiro(meiro);
 }

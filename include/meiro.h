@@ -11,11 +11,11 @@ void generate_mode(void);
 void load_mode(void);
 void play_mode(void);
 
-void generate_meiro(char choice);
+void generate_meiro(char choice, Meiro *meiro);
 void shuffle_point_array(Point *array, int size);
 void shuffle_int_array(int *array, int size);
-void play_meiro(void);
-void save_meiro(void);
-void load_meiro(void);
-void print_meiro(Cell **meiro, int size_x, int size_y);
+void play_meiro(Meiro *meiro);
+void save_meiro(Meiro *meiro);
+void load_meiro(Meiro *meiro);
+void print_meiro(Meiro *meiro);
 void print_answer(void);
