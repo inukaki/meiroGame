@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include"../include/meiro.h"
+#include"../headers/meiro.h"
 
 void generate_mode(void){
     char choice;

@@ -2,8 +2,8 @@
 
 # コンパイルオプション
 CC=gcc
-CFLAGS="-I./include"
-SRC=$(find . -name "*.c")
+CFLAGS="-I./src/headers"
+SRC=$(find ./src -name "*.c")
 TARGET="meiro"
 
 # プロジェクトのビルド

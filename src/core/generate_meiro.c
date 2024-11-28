@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<malloc.h>
 #include<stdlib.h>
-#include"../include/meiro.h"
+#include"../headers/meiro.h"
 
 void generate_meiro(char choice, Meiro *meiro){
     if (choice == '1') {
