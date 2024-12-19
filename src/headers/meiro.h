@@ -15,7 +15,7 @@ void generate_meiro(char choice, Meiro *meiro);
 void shuffle_point_array(Point *array, int size);
 void shuffle_int_array(int *array, int size);
 void play_meiro(Meiro *meiro);
-void save_meiro(Meiro *meiro);
+int  save_meiro(Meiro *meiro);
 void load_meiro(Meiro *meiro);
 void print_meiro(Meiro *meiro);
 void print_answer(void);
