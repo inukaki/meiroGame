@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "meiro.h"
+#include "../headers/meiro.h"
 void shuffle_point_array(Point *array, int size){
     for(int i = 0; i < size; i++){
         int j = rand() % size;
