@@ -23,4 +23,19 @@ void generate_mode(void){
         }
     }
     generate_meiro(choice, &meiro);
+    print_meiro(&meiro);
+    
+    printf("生成した迷路を保存しますか？\n");
+    printf("1:保存する  2:保存しない\n");
+    while(choice = getchar()){
+        if(choice == '\n') continue;
+        if(choice == '1'){
+            while(save_meiro(&meiro)==-1);
+            break;
+        }else if(choice == '2'){
+            break;
+        }else{
+            printf("不正な入力です\n");
+        }
+    }
 }

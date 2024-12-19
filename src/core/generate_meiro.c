@@ -150,7 +150,4 @@ void generate_meiro(char choice, Meiro *meiro){
     // startPointとthisWallを解放
     free(startPoint);
     free(thisWall);
-
-    // 迷路を表示
-    print_meiro(meiro);
 }
