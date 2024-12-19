@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#include"meiro.h"
+#include"headers/meiro.h"
 
 int main(){
     srand(time(NULL));
@@ -18,7 +18,7 @@ int main(){
             generate_mode();
             break;
         }else if(mode == '2'){
-            printf("読み込みモード\n");
+            load_mode();
             break;
         }else{ 
             printf("不正な入力です\n");
