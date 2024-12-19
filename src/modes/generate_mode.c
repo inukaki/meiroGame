@@ -38,4 +38,5 @@ void generate_mode(void){
             printf("不正な入力です\n");
         }
     }
+    menu_mode();
 }

@@ -7,4 +7,5 @@ void play_mode(void){
     printf("プレイモード\n");
     load_meiro(&meiro);
     play_meiro(&meiro);
+    menu_mode();
 }

@@ -7,4 +7,5 @@ void load_mode(void){
     printf("読み込みモード\n");
     load_meiro(&meiro);
     print_meiro(&meiro);
+    menu_mode();
 }

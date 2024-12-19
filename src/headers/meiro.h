@@ -7,6 +7,7 @@
 #define LARGE_X 41
 #define LARGE_Y 21
 
+void menu_mode(void);
 void generate_mode(void);
 void load_mode(void);
 void play_mode(void);
