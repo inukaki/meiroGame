@@ -23,6 +23,11 @@ void generate_meiro(char choice, Meiro *meiro){
     for (int i = 0; i < meiro->height; i++) {
         meiro->cells[i] = (Cell *)malloc(meiro->width * sizeof(Cell));
     }
+    for (int i = 0; i < meiro->height; i++) {
+        for (int j = 0; j < meiro->width; j++) {
+            meiro->cells[i][j].isPassed = 0;
+        }
+    }
 
     // 迷路の外周を生成
     for (int i = 0; i < meiro->height; i++) {
