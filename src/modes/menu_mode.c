@@ -6,6 +6,8 @@ void menu_mode(){
     printf("1:迷路生成\n");
     printf("2:迷路読み込み\n");
     printf("3:迷路をプレイ\n");
+    printf("4:迷路の答え\n");
+    printf("q:終了\n");
     char mode;
     while(mode = getchar()){
         if(mode == '\n') continue;
@@ -17,6 +19,13 @@ void menu_mode(){
             break;
         }else if(mode == '3'){
             play_mode();
+            break;
+        }else if(mode == '4'){
+            solve_mode();
+            break;
+        }
+        else if(mode == 'q'){
+            printf("プログラムを終了します\n");
             break;
         }else{ 
             printf("不正な入力です\n");

@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include"../headers/meiro.h"
 
 void play_meiro(Meiro *meiro){
@@ -58,4 +59,5 @@ void play_meiro(Meiro *meiro){
         y += dy[direction];
         meiro->cells[y][x].isPassed = 1;
     }
+    free(meiro->cells);
 }
