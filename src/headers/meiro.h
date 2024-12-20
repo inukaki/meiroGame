@@ -9,7 +9,6 @@
 
 void menu_mode(void);
 void generate_mode(void);
-void load_mode(void);
 void play_mode(void);
 void solve_mode(void);
 

@@ -38,5 +38,6 @@ void generate_mode(void){
             printf("不正な入力です\n");
         }
     }
+    printf("\n\n");
     menu_mode();
 }

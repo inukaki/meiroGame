@@ -4,9 +4,8 @@
 void menu_mode(){
     printf("モードを選択してください\n");
     printf("1:迷路生成\n");
-    printf("2:迷路読み込み\n");
-    printf("3:迷路をプレイ\n");
-    printf("4:迷路の答え\n");
+    printf("2:迷路をプレイ\n");
+    printf("3:迷路の答え\n");
     printf("q:終了\n");
     char mode;
     while(mode = getchar()){
@@ -15,12 +14,9 @@ void menu_mode(){
             generate_mode();
             break;
         }else if(mode == '2'){
-            load_mode();
-            break;
-        }else if(mode == '3'){
             play_mode();
             break;
-        }else if(mode == '4'){
+        }else if(mode == '3'){
             solve_mode();
             break;
         }

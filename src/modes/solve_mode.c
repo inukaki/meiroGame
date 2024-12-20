@@ -8,5 +8,6 @@ void solve_mode(void){
     load_meiro(&meiro);
     solve_meiro(&meiro);
     print_meiro(&meiro);
+    printf("\n\n");
     menu_mode();
 }
